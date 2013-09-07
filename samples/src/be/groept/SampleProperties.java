@@ -76,7 +76,7 @@ public class SampleProperties {
 		System.out.println("All known currencies:\n=====================");
 		sp.list(System.out);
 		System.out.println("\nFor 3 Euro, you get " + 3
-				* Float.parseFloat(sp.getProperty("usd"))
+				* Float.parseFloat(sp.getProperty("eur2usd"))
 				+ " dollars");
 				
 	}
