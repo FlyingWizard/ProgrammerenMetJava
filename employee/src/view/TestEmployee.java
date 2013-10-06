@@ -1,4 +1,8 @@
 package view;
+/**
+ * @author Mathy Paesen
+ * @version 2013/10/06
+ */
 
 import java.util.ArrayList;
 
@@ -18,6 +22,10 @@ public class TestEmployee {
 		showOneEmployee(list);
 	}
 
+	/**
+	 * Display 1 employee
+	 * @param list
+	 */
 	public static void showOneEmployee(final ArrayList<Employee> list) {
 		String input;
 		int i;

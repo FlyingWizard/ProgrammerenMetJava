@@ -1,5 +1,8 @@
 package business;
-
+/**
+ * @author Mathy Paesen
+ * @version 2013/10/06
+ */
 public class Employee
 {
 	private int uniqueNumber;
