@@ -1,10 +1,12 @@
 package view;
+
 /**
  * @author Mathy Paesen
  * @version 2013/10/06
  */
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JOptionPane;
 
@@ -17,13 +19,25 @@ public class TestEmployee {
 	 */
 	public static void main(final String[] args) {
 		final ArrayList<Employee> list = new ArrayList<Employee>();
-		mainIteration(list);
+		boolean correct = false;
+		do {
+			String choice = getInput("Input? (M)anual, (G)enerate :");
+			if (choice.equalsIgnoreCase("M")) {
+				mainIteration(list);
+				correct = true;
+			}
+			if (choice.equalsIgnoreCase("G")) {
+				generateTestData(list);
+				correct = true;
+			}
+		} while (!correct);
 		showOutput(list);
 		showOneEmployee(list);
 	}
 
 	/**
 	 * Display 1 employee
+	 * 
 	 * @param list
 	 */
 	public static void showOneEmployee(final ArrayList<Employee> list) {
@@ -33,12 +47,12 @@ public class TestEmployee {
 		range += list.size();
 		do {
 			do {
-				input = getInput("Give a employee Number ( "+range+"): ");
+				input = getInput("Give a employee Number ( " + range + "): ");
 			} while (input.isEmpty());
 
 			i = Integer.parseInt(input);
-			i-=1;
-		} while ((i < 0) || (i > list.size()-1));
+			i -= 1;
+		} while ((i < 0) || (i > list.size() - 1));
 		System.out.println(list.get(i));
 	}
 
@@ -74,7 +88,22 @@ public class TestEmployee {
 		} while (!input.equalsIgnoreCase("Q"));
 	}
 
-	public static String getInput(final String message) {
+	private static String getInput(final String message) {
 		return JOptionPane.showInputDialog(message);
+	}
+
+	private static void generateTestData(final ArrayList<Employee> list) {
+		final String[] FIRST_NAME = { "Mathy", "Frank", "Frederik", "Ludo",
+				"Hans", "Louis" };
+		final String[] LAST_NAME = { "Paesen", "Dingenen", "Vanastbrouk",
+				"Coppens", "Vandievel", "Vanoosterhout", "Jaeken", "Leterme",
+				"Hulshout", "Vanbrussel" };
+
+		Random random = new Random();
+
+		for (int i = 0; i < LAST_NAME.length; i++) {
+			list.add(new Employee(LAST_NAME[random.nextInt(LAST_NAME.length)],
+					FIRST_NAME[random.nextInt(FIRST_NAME.length)]));
+		}
 	}
 }
