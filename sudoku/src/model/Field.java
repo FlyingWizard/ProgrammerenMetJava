@@ -3,9 +3,13 @@ package model;
 import java.util.Random;
 
 import utilities.Constants;
-
 import model.Cell;
 
+/**
+ * @author Mathy
+ * @version 1.0
+ *
+ */
 public class Field {
 	private byte position;
 
@@ -112,7 +116,7 @@ public class Field {
 	 * @throws Exception
 	 */
 	private int newFigure(Random rnd) {
-		/** while the figure exists or =0, find a new figure */
+		/** while the figure exists or = 0, find a new figure */
 
 		byte hulp = 0;
 		do {
@@ -151,7 +155,7 @@ public class Field {
 	}
 
 	/**
-	 * eliminate dupplicates in each row and each column
+	 * eliminate duplicates in each row and each column
 	 * 
 	 * @param Field
 	 *            1,2,3,4
@@ -388,7 +392,7 @@ public class Field {
 	}
 
 	/**
-	 * eliminate dupplicates
+	 * eliminate duplicates
 	 * 
 	 * @param indexes
 	 *            of the cell that has to be replaced with another
@@ -398,15 +402,18 @@ public class Field {
 		Cell cell = null;
 		byte x = i;
 		byte y = j;
-		if (sel == Constants.Selection.ROW) {
-			x = getIndex(i);// take at least current line
-			y = getIndex(j);// take at least first column
+		switch(sel){
+			case ROW: {
+				x = getIndex(i);// take at least current line
+				y = getIndex(j);// take at least first column
+				break;
+			}
+			case COL: {
+				x = getIndex(i);// take at least first line
+				y = getIndex(j);// take at least current column
+				break;
+			}
 		}
-		if (sel == Constants.Selection.COL) {
-			x = getIndex(i);// take at least first line
-			y = getIndex(j);// take at least current column
-		}
-
 		cell = getCell(i, j);
 		setCell(getCell(x, y), i, j);
 		setCell(cell, x, y);

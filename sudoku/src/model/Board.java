@@ -77,8 +77,8 @@ public class Board implements Comparable{
 				generatedFigure =  (1 + rnd.nextInt((int)Math.pow(Constants.DIMENSION, 2.0)));				
 			} while (exists(generated, generatedFigure));
 
-			if (allFiguresGenerated(generated, generatedFigure)) {
-				Constants.logger.debug("Alle cijfers zijn gegenereerd"
+			if (allNumbersGenerated(generated, generatedFigure)) {
+				Constants.logger.debug("All numbers have been generated"
 						+ Arrays.toString(generated));
 				return -1;
 			}
@@ -263,7 +263,7 @@ public class Board implements Comparable{
 	 * @param generatedFigure
 	 * @return true/false
 	 */
-	private boolean allFiguresGenerated(int[] generated, int generatedFigure) {
+	private boolean allNumbersGenerated(int[] generated, int generatedFigure) {
 		/** generatedFigure is not yet used */
 		if (Arrays.binarySearch(generated, generatedFigure) < 0) {
 			int index = 0;
@@ -420,6 +420,22 @@ public class Board implements Comparable{
 		return 0;
 	}
 	
+	/**
+	 * @param board
+	 * @return boolean
+	 */
+	public boolean equals(Object board){
+		for(int i = 0; i< this.getBoard().length; i++){
+			for(int j = 0; j<this.getRow(i).length; j++){
+				if(this.getCell(i,j).compareTo(((Board)board).getCell(i,j)) != 0){					
+					return this.getCell(i,j).equals(((Board)board).getCell(i,j));
+				}			
+			}
+		}
+		return true;
+
+	}
+
 	/**
 	 * @param board
 	 * @return deep copy of board
