@@ -163,6 +163,8 @@
 		<module>samples</module>
 		<module>amount</module>
 		<module>calculator</module>
+		<module>sudoku</module>
+		<module>basinv</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
